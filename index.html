@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Todo List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+       justify-content: center;
+        margin-top: 120px;
+        font-family: 'Montserrat', sans-serif;
+        background-color:rgb(230, 238, 243);
+    }
+    .container {
+      width: 300px;
+      margin: 20px auto;
+    }
+    .input-container {
+      display: flex;
+  padding: 40px;
+  border-radius: 5px 5px 0 0;
+  background-image: linear-gradient(340deg, #045de9 0%, #09c6f9 100%);
+
+    }
+    .input-container input {
+      flex-grow: 1;
+      padding: 5px;
+    }
+    .input-container button {
+      padding: 5px 10px;
+      margin-left: 5px;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 5px;
+    }
+    li.complete {
+      text-decoration: line-through;
+      color: #888;
+    }
+    .container{
+        width: 800px;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 4px 4px 5px rgba(82, 82, 82, .4);
+  border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Todo List</h1>
+    <div class="input-container">
+      <input type="text" id="taskInput" placeholder="Enter a task">
+      <button id="addTaskButton">Add</button>
+    </div>
+    <ul id="taskList"></ul>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const taskInput = document.getElementById("taskInput");
+      const addTaskButton = document.getElementById("addTaskButton");
+      const taskList = document.getElementById("taskList");
+
+      addTaskButton.addEventListener("click", function() {
+        const task = taskInput.value.trim();
+        if (task !== "") {
+          const li = document.createElement("li");
+          li.innerText = task;
+          taskList.appendChild(li);
+          taskInput.value = "";
+        }
+      });
+
+      taskList.addEventListener("click", function(event) {
+        const target = event.target;
+        if (target.tagName === "LI") {
+          target.classList.toggle("complete");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
